@@ -44,7 +44,7 @@ export class Page {
             .getSubscription()
             .then(subscription => {
                 if (subscription) {
-                    return subscription.unsubscribe();
+                    subscription.unsubscribe();
                 }
                 console.log('User is unsubscribed.');
                 this.button.updateSubscription(false);

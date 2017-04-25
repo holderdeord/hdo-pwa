@@ -1,15 +1,14 @@
 export class Button {
     constructor(buttonSelector) {
         this.element = document.querySelector(buttonSelector);
-        this.isDisabled = true;
+        this.isSubscribed = false;
         this._events = {
             subscribe: [],
             unSubscribe: []
         };
 
         this.element.addEventListener('click', (...rest) => {
-            this.isDisabled = !this.isDisabled;
-            this._trigger(this.isDisabled ? 'unSubscribe' : 'subscribe', ...rest)
+            this._trigger(this.isSubscribed ? 'unSubscribe' : 'subscribe', ...rest)
         });
     }
 
@@ -34,6 +33,7 @@ export class Button {
     }
 
     updateSubscription(isSubscribed) {
+        this.isSubscribed = isSubscribed;
         if (Notification.permission === 'denied') {
             this._text('Push Messaging Blocked.')._disable();
             return;
