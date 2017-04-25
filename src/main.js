@@ -3,6 +3,7 @@ import {SubscriptionInfo} from './subscriptionInfo';
 import {Page} from './page';
 
 if ('serviceWorker' in navigator && 'PushManager' in window) {
+    console.log('Application is online: ', navigator.onLine);
     const button = new Button('#ToggleButton');
     const subscriptionInfo = new SubscriptionInfo('.js-subscription-details', '.js-subscription-json');
     navigator.serviceWorker.register('./service-worker.js')
